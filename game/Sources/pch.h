@@ -21,3 +21,8 @@
 
 // Dragonfruit
 #include "dragonfruit/logger.h"
+
+// Os specific
+#ifdef _WIN32
+	#include <windows.h>
+#endif
