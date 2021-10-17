@@ -1,0 +1,2 @@
+C:/Users/Minez/source/repos/mc-clone/game/Dependencies/GLM/out/build/x64-Debug (default)/CMakeFiles/edit_cache.dir
+C:/Users/Minez/source/repos/mc-clone/game/Dependencies/GLM/out/build/x64-Debug (default)/CMakeFiles/rebuild_cache.dir
