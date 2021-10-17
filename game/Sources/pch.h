@@ -1,5 +1,7 @@
 #pragma once
 
+#define DebugMode 0
+
 // OpenGL stuff
 #include <glew.h>
 #include <glfw3.h>
@@ -14,6 +16,7 @@
 #include <stb_image.h>
 
 // Standard library stuff
+#include <memory>
 #include <fstream>
 #include <vector>
 #include <sstream>

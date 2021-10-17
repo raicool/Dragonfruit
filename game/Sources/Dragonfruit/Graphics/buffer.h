@@ -21,8 +21,13 @@ namespace DragonFruit
 
 	class VertexBuffer
 	{
+	public:
+		void Bind();
+		void Unbind();
+
 	private:
-		static GLuint m_vbo;
+		static GLuint m_VBO;
+
 	};
 
 	class VertexBufferLayout
@@ -32,14 +37,13 @@ namespace DragonFruit
 		{
 			BufferTypeSize Type;
 			const char* Identifier;
-			bool Normalized;
 		};
 
 		std::vector<Element> VertexElements;
 
 		void SetLayout(Element& _element) 
 		{ 
-			VertexElements.push_back({ _element.Type, _element.Identifier, _element.Normalized });
+			VertexElements.push_back({ _element.Type, _element.Identifier });
 		}
 	};
 }

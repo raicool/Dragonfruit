@@ -12,11 +12,13 @@ namespace DragonFruit
 		static void NewVertex(std::vector<float>&);
 		static void NewIndex(std::vector<unsigned int>&);
         static void Draw(Window& window_context);
+
+        Render();
+
     private:
         static GLuint m_Count;
         static GLuint m_Offset;
 
-        static VertexBuffer m_VertexBuffer;
-        static IndexBuffer m_IndexBuffer;
+        
     };
 }

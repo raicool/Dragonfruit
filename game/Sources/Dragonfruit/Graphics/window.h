@@ -1,7 +1,5 @@
 #pragma once
 
-#define DebugMode 0
-
 constexpr const char* Title = "OpenGL";
 constexpr int WinWidth  = 1326;
 constexpr int WinHeight = 720;
@@ -15,6 +13,7 @@ namespace DragonFruit
         int width = WinWidth;
         int height = WinHeight;
 
+        void SetClearColor(GLclampf red, GLclampf green, GLclampf blue);
         void Destroy();
         void Update();
         

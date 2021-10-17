@@ -4,8 +4,6 @@
 
 namespace DragonFruit
 {
-    GLuint Render::m_count;
-    GLuint Render::m_offset;
 
     void Render::GenBuffers(GLsizei Size)
     {
@@ -21,12 +19,17 @@ namespace DragonFruit
 
     void Render::Draw(Window& window)
     {
-        DF_GLCALL(glDrawElements(GL_TRIANGLES, m_count, GL_UNSIGNED_INT, nullptr));
-
+        //DF_GLCALL(glDrawElements(GL_TRIANGLES, 0, GL_UNSIGNED_INT, nullptr));
+        
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+    }
+
+    Render::Render()
+    {
+
     }
 }

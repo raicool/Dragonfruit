@@ -6,6 +6,8 @@ namespace DragonFruit
 {
 	void Application::OnCreate()
 	{
+		DF_GLCALL(glDrawArrays(1, 1, 1));
+
 		m_OrthoCamera.Create(-1.0f, 1.0f, -1.0f, 1.0f);
 		m_Shader.LoadShaders("./Resources/Shader/vertex.glsl", "./Resources/Shader/fragment.glsl");
 
@@ -19,7 +21,7 @@ namespace DragonFruit
 		glEnable(GL_CULL_FACE);
 		glDepthFunc(GL_LESS);
 
-		glClearColor(0, 0, 0.5, 1.0f);
+		m_Window.SetClearColor(0, 0, 0.5);
 	}
 
 	void Application::OnUpdate()
@@ -27,8 +29,6 @@ namespace DragonFruit
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
-
-		std::unique_ptr<Player> newplayer;
 
 		// ImGui content
 		{

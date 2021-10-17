@@ -22,7 +22,7 @@ namespace DragonFruit
 		}
 		else
 		{
-			printf("Impossible to open %s. Are you in the right directory?\n", vertex_file_path);
+			DF_LOG_WARN("Impossible to open " << vertex_file_path << ". Are you in the right directory?");
 			return;
 		}
 
@@ -38,7 +38,7 @@ namespace DragonFruit
 		}
 		else
 		{
-			printf("Impossible to open %s. Are you in the right directory?\n", fragment_file_path);
+			DF_LOG_WARN("Impossible to open " << fragment_file_path << ". Are you in the right directory?");
 			return;
 		}
 
@@ -46,7 +46,7 @@ namespace DragonFruit
 		int InfoLogLength;
 
 		// Compile Vertex Shader
-		printf("Compiling shader : %s\n", vertex_file_path);
+		DF_LOG_TEXT("Compiling shader : " << vertex_file_path);
 		char const* VertexSourcePointer = VertexShaderCode.c_str();
 		glShaderSource(VertexShaderID, 1, &VertexSourcePointer, NULL);
 		glCompileShader(VertexShaderID);
@@ -58,11 +58,11 @@ namespace DragonFruit
 		{
 			std::vector<char> VertexShaderErrorMessage(InfoLogLength + 1);
 			glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, VertexShaderErrorMessage.data());
-			printf("%s\n", &VertexShaderErrorMessage[0]);
+			DF_LOG_ERROR(&VertexShaderErrorMessage[0]);
 		}
 
 		// Compile Fragment Shader
-		printf("Compiling shader : %s\n", fragment_file_path);
+		DF_LOG_TEXT("Compiling shader : " << fragment_file_path);
 		char const* FragmentSourcePointer = FragmentShaderCode.c_str();
 		glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer, NULL);
 		glCompileShader(FragmentShaderID);
@@ -74,11 +74,11 @@ namespace DragonFruit
 		{
 			std::vector<char> FragmentShaderErrorMessage(InfoLogLength + 1);
 			glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, FragmentShaderErrorMessage.data());
-			printf("%s\n", &FragmentShaderErrorMessage[0]);
+			DF_LOG_ERROR(&FragmentShaderErrorMessage[0]);
 		}
 
 		// Link the program
-		printf("Linking program\n");
+		DF_LOG_TEXT("Linking program");
 		m_ProgramID = glCreateProgram();
 		glAttachShader(m_ProgramID, VertexShaderID);
 		glAttachShader(m_ProgramID, FragmentShaderID);
@@ -91,7 +91,7 @@ namespace DragonFruit
 		{
 			std::vector<char> ProgramErrorMessage(InfoLogLength + 1);
 			glGetProgramInfoLog(m_ProgramID, InfoLogLength, NULL, ProgramErrorMessage.data());
-			printf("%s\n", &ProgramErrorMessage[0]);
+			DF_LOG_ERROR(&ProgramErrorMessage[0]);
 		}
 
 		glDetachShader(m_ProgramID, VertexShaderID);

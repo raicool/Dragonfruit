@@ -26,6 +26,11 @@ namespace DragonFruit
         glfwTerminate();
     }
 
+    void Window::SetClearColor(GLclampf red, GLclampf green, GLclampf blue)
+    {
+        glClearColor(red, green, blue, 1.0);
+    }
+
     void Window::ErrCallback(int error, const char* msg)
     {
         printf("[%i] %s", error, msg);
@@ -37,6 +42,8 @@ namespace DragonFruit
         glfwSwapInterval(VSync);
         glewInit();
 
-        std::cout << std::endl << "Using OpenGL " << glGetString(GL_VERSION) << std::endl;
+        DF_LOG_INFO("Using OpenGL " << glGetString(GL_VERSION));
+        DF_LOG_INFO("       RENDERER: " << glGetString(GL_RENDERER));
+        DF_LOG_INFO("       VENDOR:   " << glGetString(GL_VENDOR));
     }
 }
