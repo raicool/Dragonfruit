@@ -26,7 +26,7 @@ namespace DragonFruit
                 DF_LOG_WARN("GL_INVALID_FRAMEBUFFER_OPERATION : The framebuffer object is not complete.");
                 break;
             case GL_OUT_OF_MEMORY:
-                DF_LOG_WARN("GL_OUT_OF_MEMORY : There is not enough memory left to execute the command.");
+                DF_LOG_ERROR("GL_OUT_OF_MEMORY : There is not enough memory left to execute the command.");
                 break;
             case GL_STACK_UNDERFLOW:
                 DF_LOG_WARN("GL_STACK_UNDERFLOW : An attempt has been made to perform an operation that would cause an internal stack to underflow.");

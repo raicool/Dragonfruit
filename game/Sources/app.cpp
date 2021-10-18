@@ -6,7 +6,6 @@ namespace DragonFruit
 {
 	void Application::OnCreate()
 	{
-		DF_GLCALL(glDrawArrays(1, 1, 1));
 
 		m_OrthoCamera.Create(-1.0f, 1.0f, -1.0f, 1.0f);
 		m_Shader.LoadShaders("./Resources/Shader/vertex.glsl", "./Resources/Shader/fragment.glsl");
@@ -22,6 +21,11 @@ namespace DragonFruit
 		glDepthFunc(GL_LESS);
 
 		m_Window.SetClearColor(0, 0, 0.5);
+
+		DF_LOG_WARN("this is a warning!!");
+		DF_LOG_ERROR("this is a error!!");
+		DF_LOG_DEBUG("this is a debug!!");
+		DF_LOG_FATAL("this is a fatal!!");
 	}
 
 	void Application::OnUpdate()

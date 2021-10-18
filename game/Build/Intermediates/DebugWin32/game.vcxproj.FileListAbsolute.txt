@@ -1,7 +1,0 @@
-C:\Users\rai\source\repos\Dragonfruit\game\Build\DebugWin32\Resources\Texture\atlas.png
-C:\Users\rai\source\repos\Dragonfruit\game\Build\DebugWin32\Resources\Texture\grass.png
-C:\Users\rai\source\repos\Dragonfruit\game\Build\DebugWin32\Resources\Texture\grid.png
-C:\Users\rai\source\repos\Dragonfruit\game\Build\DebugWin32\Resources\Texture\noise.png
-C:\Users\rai\source\repos\Dragonfruit\game\Build\DebugWin32\Resources\Texture\placehold.png
-C:\Users\rai\source\repos\Dragonfruit\game\Build\DebugWin32\Resources\Shader\vertex.glsl
-C:\Users\rai\source\repos\Dragonfruit\game\Build\DebugWin32\Resources\Shader\fragment.glsl
