@@ -26,7 +26,7 @@ namespace DragonFruit
 #ifdef _WIN32
     static HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-#define DF_LOG_TEXT(...)  SetConsoleTextAttribute(DragonFruit::hConsole, (WORD)15));\
+#define DF_LOG_TEXT(...)  SetConsoleTextAttribute(DragonFruit::hConsole, (WORD)(15));\
                           std::cout << "[INFO] " << __VA_ARGS__ << std::endl;  // White
 
 #define DF_LOG_INFO(...)  SetConsoleTextAttribute(DragonFruit::hConsole, (WORD)(2));\

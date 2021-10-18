@@ -1,4 +1,4 @@
-#include "../../pch.h"
+#include "pch.h"
 
 #include "render.h"
 
@@ -11,5 +11,9 @@ namespace DragonFruit
 	{
 		Render::NewVertex(this->Vertices);
 		Render::NewIndex(this->Indices);
+	}
+
+	Quad::~Quad()
+	{
 	}
 };

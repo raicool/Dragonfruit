@@ -1,4 +1,4 @@
-#include "../pch.h"
+#include "pch.h"
 #include "graphics/quad.h"
 #include "entity.h"
 
