@@ -4,6 +4,12 @@
 
 namespace DragonFruit
 {
+    void OrthographicCamera::Create(float l, float r, float b, float t)
+    {
+        m_ProjectionMatrix = glm::ortho(l, r, b, t);
+        this->UpdateMatrix();
+    }
+
     void OrthographicCamera::UpdateMatrix()
     {
         glm::mat4 transform = glm::translate(glm::mat4(1), m_Position) 
@@ -13,15 +19,15 @@ namespace DragonFruit
         m_VPMatrix = m_ViewMatrix * m_ProjectionMatrix;
     }
 
-    void OrthographicCamera::SetPosition(glm::vec3 _position)
+    void OrthographicCamera::SetPosition(glm::vec3 position)
     {
-        m_Position = _position;
+        m_Position = position;
         this->UpdateMatrix();
     }
 
-    void OrthographicCamera::SetRotation(float _rotation)
+    void OrthographicCamera::SetRotation(float rotation)
     {
-        m_Rotation = _rotation;
+        m_Rotation = rotation;
         this->UpdateMatrix();
     }
 
@@ -32,4 +38,6 @@ namespace DragonFruit
     OrthographicCamera::~OrthographicCamera()
     {
     }
+
+
 }

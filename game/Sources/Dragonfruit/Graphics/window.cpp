@@ -43,6 +43,7 @@ namespace DragonFruit
         glewInit();
 
         DF_LOG_INFO("Using OpenGL " << glGetString(GL_VERSION));
+        DF_LOG_INFO("OpenGL Info:")
         DF_LOG_INFO("       RENDERER: " << glGetString(GL_RENDERER));
         DF_LOG_INFO("       VENDOR:   " << glGetString(GL_VENDOR));
     }

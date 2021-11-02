@@ -5,12 +5,6 @@ namespace DragonFruit
 {
 	struct Texture
 	{
-	private:
-		GLuint m_renderID;
-		unsigned char* m_texdatabuf;
-		int m_width, m_height, m_bpp;
-		unsigned char ID;
-
 	public:
 		Texture(const char* path);
 		~Texture();
@@ -18,7 +12,12 @@ namespace DragonFruit
 		void Bind(unsigned int slot = 0) const;
 		void Unbind() const;
 
-		int GetWidth()  const { return m_width;  }
-		int GetHeight() const { return m_height; }
+		int GetWidth()  const { return m_Width;  }
+		int GetHeight() const { return m_Height; }
+
+	private:
+		uint32_t m_RenderID;
+		uint8_t* m_TextureDataBuffer;
+		int32_t m_Width, m_Height, m_bpp;
 	};
 }

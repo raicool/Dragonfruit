@@ -1,49 +1,48 @@
 #pragma once
 
 #include <glew.h>
-#include <vector>
 
 namespace DragonFruit
 {
-	enum class BufferTypeSize
+	struct Vertex
 	{
-		Char = 1,
-		Short = 2,
-		Int = 4,
-		Float = 4,
-		Float2 = 8,
-		Float3 = 12,
-		Long = 8,
-		Double = 8,
-		Double2 = 16,
-		Double3 = 24
+		float Position[3];
+		float TextureCoords[2];
 	};
 
 	class VertexBuffer
 	{
 	public:
-		void Bind();
-		void Unbind();
+		void Bind() const;
+		void Unbind() const;
+		void Set(std::vector<Vertex>& data);
+
+		const uint32_t& GetSize() { return m_Size; }
+
+		VertexBuffer(std::vector<Vertex>& data);
+		VertexBuffer();
+		~VertexBuffer();
 
 	private:
-		static GLuint m_VBO;
-
+		uint32_t m_VBO;
+		uint32_t m_Size;
 	};
 
-	class VertexBufferLayout
+	class IndexBuffer
 	{
 	public:
-		struct Element
-		{
-			BufferTypeSize Type;
-			const char* Identifier;
-		};
+		void Bind() const;
+		void Unbind() const;
+		void Set(std::vector<uint32_t>& data);
 
-		std::vector<Element> VertexElements;
+		const uint32_t GetCount() { return m_Count; }
 
-		void SetLayout(Element& _element) 
-		{ 
-			VertexElements.push_back({ _element.Type, _element.Identifier });
-		}
+		IndexBuffer(std::vector<uint32_t>& index);
+		IndexBuffer();
+		~IndexBuffer();
+
+	private:
+		uint32_t m_IBO;
+		uint32_t m_Count;
 	};
 }

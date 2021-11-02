@@ -1,6 +1,6 @@
 #pragma once
 
-#define DebugMode 0
+#define DebugMode 1
 
 // Other dependencies stuff
 #define STB_IMAGE_IMPLEMENTATION

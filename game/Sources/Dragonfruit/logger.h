@@ -7,9 +7,9 @@
 
 #define DF_GLCALL(x)\
     if (DebugMode) {\
-    GLClearError();\
+    DragonFruit::GLClearError();\
     x;\
-    DF_ASSERT(GLLogCall(#x, __FILE__, __LINE__));}
+    DF_ASSERT(DragonFruit::GLLogCall(#x, __FILE__, __LINE__));}
 
 
 

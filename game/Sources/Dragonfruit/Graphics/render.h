@@ -2,23 +2,24 @@
 
 #include "window.h"
 #include "buffer.h"
+#include "array.h"
+#include "quad.h"
 
 namespace DragonFruit
 {
     class Render
     {
     public:
-		static void GenBuffers(GLsizei Size);
-		static void NewVertex(std::vector<float>&);
-		static void NewIndex(std::vector<unsigned int>&);
+		static void GenerateBuffer(uint32_t size);
+		static void DrawQuad(Quad& quad);
         static void Draw(Window& window_context);
 
         Render();
 
     private:
-        static GLuint m_Count;
-        static GLuint m_Offset;
+        static uint32_t m_Count;
+        static uint32_t m_Offset;
 
-        
+        static VertexArray m_VertexArray;
     };
 }

@@ -14,14 +14,14 @@ namespace DragonFruit
 
 		void Bind();
 
-		GLuint GetProgramID() { return m_ProgramID; }
+		uint32_t GetProgramID() { return m_ProgramID; }
 
 		Shader();
 		~Shader();
 
-		operator GLuint () { return m_ProgramID; };
+		operator uint32_t () { return m_ProgramID; };
 
 	private:
-		GLuint m_ProgramID;
+		uint32_t m_ProgramID;
 	};
 }

@@ -7,8 +7,8 @@ namespace DragonFruit
 	void Shader::LoadShaders(const char* vertex_file_path, const char* fragment_file_path)
 	{
 		// Create the shaders
-		GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
-		GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+		uint32_t VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
+		uint32_t FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
 
 		// Read the Vertex Shader code from the file
 		std::string VertexShaderCode;
@@ -42,7 +42,7 @@ namespace DragonFruit
 			return;
 		}
 
-		GLint Result = GL_FALSE;
+		int32_t Result = GL_FALSE;
 		int InfoLogLength;
 
 		// Compile Vertex Shader

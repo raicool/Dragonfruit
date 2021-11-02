@@ -7,7 +7,7 @@ namespace DragonFruit
 	class OrthographicCamera
 	{
 	public:
-		void Create(float l, float r, float b, float t) { m_ProjectionMatrix = glm::ortho(l, r, b, t); }
+		void Create(float l, float r, float b, float t);
 
 		void SetPosition(glm::vec3);
 		const glm::vec3 Position() { return m_Position; }
@@ -15,6 +15,7 @@ namespace DragonFruit
 		void SetRotation(float);
 		const float RotationDeg() { return glm::degrees(m_Rotation); }
 		const float RotationRad() { return m_Rotation; }
+		glm::mat4& VPMatrix() { return m_VPMatrix; }
 		
 		OrthographicCamera();
 		~OrthographicCamera();

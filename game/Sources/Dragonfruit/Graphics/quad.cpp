@@ -7,13 +7,8 @@
 namespace DragonFruit
 {
 	Quad::Quad(Texture& atlas, int posx, int posy, glm::vec3 position)
-		: m_texture(atlas), m_posx(posx), m_posy(posy)
+		: m_texture(atlas), m_TexturePosX(posx), m_TexturePosY(posy)
 	{
-		Render::NewVertex(this->Vertices);
-		Render::NewIndex(this->Indices);
-	}
 
-	Quad::~Quad()
-	{
 	}
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "texture.h"
+#include "array.h"
 
 namespace DragonFruit
 {
@@ -8,26 +9,33 @@ namespace DragonFruit
 	{
 	public:
 
-		glm::vec3 Position{ 0, 0, 0.1 };
+		glm::vec3 Pos{ 0, 0, 0.1 };
 
-		// Vertex position (0byte offset) -> Texture coords (12byte offset)
-		std::vector<float> Vertices
+		std::vector<Vertex> Vertices
 		{
-			Position.x + 1.0f, Position.y + 1.0f, Position.z + 0.0f, // 0 : top right
-			(float)((m_posx + 1) * 16) / 256,
-			(float)((m_posy + 1) * 16) / 256,
+			Vertex {
+				Pos.x + 1.0f, Pos.y + 1.0f, Pos.z, // 0 : top right
+				m_TexturePosX + 1 * 16 / 256,
+				m_TexturePosY + 1 * 16 / 256
+			},
 
-			Position.x + 1.0f, Position.y - 1.0f, Position.z + 0.0f, // 1 : bottom right
-			(float)((m_posx + 1) * 16) / 256,
-			(float)( m_posy      * 16) / 256,
+			Vertex {
+				Pos.x + 1.0f, Pos.y - 1.0f, Pos.z, // 1 : bottom right
+				m_TexturePosX + 1 * 16 / 256,
+				m_TexturePosY     * 16 / 256
+			},
 
-			Position.x - 1.0f, Position.y - 1.0f, Position.z + 0.0f, // 2 : bottom left
-			(float)( m_posx      * 16) / 256,
-			(float)( m_posy      * 16) / 256,
+			Vertex {
+				Pos.x - 1.0f, Pos.y - 1.0f, Pos.z, // 2 : bottom left
+				m_TexturePosX * 16 / 256,
+				m_TexturePosY * 16 / 256
+			},
 
-			Position.x - 1.0f, Position.y + 1.0f, Position.z + 0.0f, // 3 : top left
-			(float)( m_posx      * 16) / 256,
-			(float)((m_posy + 1) * 16) / 256
+			Vertex {
+				Pos.x - 1.0f, Pos.y + 1.0f, Pos.z, // 3 : top left
+				m_TexturePosX     * 16 / 256,
+				m_TexturePosY + 1 * 16 / 256
+			},
 		};
 
 		std::vector<unsigned int> Indices
@@ -39,11 +47,9 @@ namespace DragonFruit
 	public:
 		Quad(Texture& atlas, int posx, int posy, glm::vec3 position = glm::vec3(0));
 
-		~Quad();
-
 	private:
 		Texture& m_texture;
-		int m_posx, m_posy;
+		float m_TexturePosX, m_TexturePosY;
 		int m_vbid, m_ibid;
 	};
 }

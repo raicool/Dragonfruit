@@ -6,19 +6,18 @@ namespace DragonFruit
 {
 	void Application::OnCreate()
 	{
-
 		m_OrthoCamera.Create(-1.0f, 1.0f, -1.0f, 1.0f);
 		m_Shader.LoadShaders("./Resources/Shader/vertex.glsl", "./Resources/Shader/fragment.glsl");
 
-		// Enable wireframe display GL_LINE
-		DF_DEBUGLINE(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
+		m_OrthoCamera.SetPosition({ -1.0, -1.0, -1.0 });
+		m_Shader.SendUniformMat4("u_VPMatrix", m_OrthoCamera.VPMatrix());
 
-		// flags we will need to enable
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_CULL_FACE);
-		glDepthFunc(GL_LESS);
+		//DF_DEBUGLINE(glPolygonMode(GL_FRONT_AND_BACK, GL_LINE));
+		DF_GLCALL(glEnable(GL_BLEND));
+		DF_GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+		DF_GLCALL(glEnable(GL_DEPTH_TEST));
+		DF_GLCALL(glEnable(GL_CULL_FACE));
+		DF_GLCALL(glDepthFunc(GL_LESS));
 
 		m_Window.SetClearColor(0, 0, 0.5);
 
@@ -26,6 +25,8 @@ namespace DragonFruit
 		DF_LOG_ERROR("this is a error!!");
 		DF_LOG_DEBUG("this is a debug!!");
 		DF_LOG_FATAL("this is a fatal!!");
+
+		DF_GLCALL(glUseProgram(m_Shader));
 	}
 
 	void Application::OnUpdate()
@@ -39,6 +40,12 @@ namespace DragonFruit
 			ImGui::NewFrame();
 			ImGui::Begin("Debug");
 			ImGui::Text("%.3f FPS  (%.3f ms/frame)", m_ImGuiIO.Framerate, 1000 / m_ImGuiIO.Framerate);
+			ImGui::NewLine();
+			ImGui::Text("%.3f", m_OrthoCamera.Position().x);
+			ImGui::Text("%.3f", m_OrthoCamera.Position().y);
+			ImGui::Text("%.3f", m_OrthoCamera.Position().z);
+			ImGui::NewLine();
+			ImGui::Text("%.3f", m_OrthoCamera.RotationDeg());
 			ImGui::End();
 		}
 
@@ -50,10 +57,11 @@ namespace DragonFruit
 	{
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
+		glfwTerminate();
 	}
 
 	Application::Application()
-		: m_ImGuiIO(ImGui::GetIO())
+		: m_ImGuiIO(ImGui::GetIO()), m_Texture("./Resources/Texture/atlas.png"), m_Player(m_Texture)
 	{
 		ImGui::StyleColorsDark();
 		ImGui_ImplGlfw_InitForOpenGL(m_Window, true);
