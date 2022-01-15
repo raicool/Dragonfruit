@@ -2,11 +2,6 @@
 
 namespace DragonFruit
 {
-	Window& Window::Get() {
-		static Window instance;
-		return instance;
-	}
-
 	void Window::Update(bool& running)
 	{
 		SetClearColor(32, 64, 128);
@@ -22,6 +17,7 @@ namespace DragonFruit
 				break;
 
 			default:
+				EntityManager::Get().Process(*this);
 				SDL_RenderPresent(m_Render);
 				m_Framecount++;
 				break;
@@ -67,5 +63,11 @@ namespace DragonFruit
 	Window::~Window()
 	{
 		DF_LOG_INFO("SDL Window destroyed.")
+	}
+
+	Window& Window::Get()
+	{
+		static Window instance;
+		return instance;
 	}
 }

@@ -12,8 +12,10 @@ namespace DragonFruit
 		Quad m_Quad;
 		uint32_t m_Id;
 
+		bool m_Controllable = false;
+
 	public:
-		virtual Quad& GetQuad() { return m_Quad; }
+		Quad& GetQuad() { return m_Quad; }
 		float& x = this->m_Quad.GetRect().x;
 		float& y = this->m_Quad.GetRect().y;
 		float& w = this->m_Quad.GetRect().w;
@@ -21,20 +23,11 @@ namespace DragonFruit
 
 		uint32_t GetID() { return m_Id; }
 
-		Entity(Vector2, Vector2);
-		virtual ~Entity();
-	};
+		Entity(Texture*, Vector2&, Vector2&);
+		~Entity();
 
-	class Player : public Entity
-	{
-	protected:
-		uint32_t m_Speed;
-		
-	public:
 		void HandleInputs();
-		void AssignTexture(Texture&);
-
-		Player(Texture&, Vector2&, Vector2&);
+		void AssignTexture(Texture*);
 	};
 
 	class EntityManager
@@ -52,6 +45,6 @@ namespace DragonFruit
 		void AddEntity(Entity*);
 
 		auto& GetEntityTable() { return m_Entities; }
-		auto GetEntityCount() const { return m_Entities.size(); }
+		auto  GetEntityCount() const { return m_Entities.size(); }
 	};
 }

@@ -31,4 +31,6 @@ set(BUILD_SHARED_LIBS OFF CACHE BOOL "wow" FORCE)
 add_subdirectory(game/dependencies/SDL)
 add_subdirectory(game/dependencies/SDL_image)
 
+file(COPY game/resources DESTINATION ${CMAKE_BINARY_DIR})
+
 target_link_libraries(dragonfruit SDL2-static SDL2main SDL2_image)

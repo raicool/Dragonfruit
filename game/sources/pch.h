@@ -1,6 +1,8 @@
 // Standard Library
 #include <iostream>
 #include <unordered_map>
+#include <memory>
+#include <vector>
 
 // SDL/OpenGL
 #define SDL_MAIN_HANDLED
@@ -18,5 +20,5 @@
 #include "graphics/quad.h"
 #include "graphics/window.h"
 #include "system/entity.h"
-#include "system/app.h"
 #include "system/manager.h"
+#include "system/app.h"

@@ -6,7 +6,11 @@ namespace DragonFruit
 	class Application
 	{
 		bool m_Running = false;
-		Player* m_Player;
+		Entity* m_Player;
+
+		EntityManager& m_EntityManager;
+		Resources& m_Resources;
+
 	public:
 		void Start();
 		void Update();
