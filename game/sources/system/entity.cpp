@@ -2,14 +2,17 @@
 
 namespace DragonFruit
 {
-	Player*  EntityManager::m_EntityTable[MAX_ENTITIES];
-	uint32_t EntityManager::m_EntityCount;
+	EntityManager& EntityManager::Get() {
+		static EntityManager instance;
+		return instance;
+	}
 
 	// Entity
 	Entity::Entity(Vector2 _pos, Vector2 _size)
 		: m_Quad(_pos, _size)
 	{
-		this->m_Id = EntityManager::GetEntityCount();
+		static uint32_t counter = 0;
+		this->m_Id = counter++;
 		DF_LOG_INFO("Entity created");
 	}
 	
@@ -39,22 +42,32 @@ namespace DragonFruit
 	}
 
 	// Entity Manager
-	void EntityManager::CreatePlayer(Texture& _texture, Vector2 _pos, Vector2 _size)
+
+	void EntityManager::AddEntity(Entity* entity)
+
 	{
-		m_EntityTable[m_EntityCount] = new Player(_texture, _pos, _size);
-		m_EntityCount++;
+		m_Entities.push_back(entity);
 	}
 
-	void EntityManager::Kill(uint32_t _id)
+	void EntityManager::Kill(uint32_t id)
 	{
-		delete m_EntityTable[_id];
+		for (size_t i = 0; i < m_Entities.size(); ++i)
+		
+		{
+			if (m_Entities[i]->GetID() == id) {
+				delete m_Entities[i];
+				m_Entities.erase(m_Entities.begin() + i);
+				return;
+			}
+		}
 	}
 
 	void EntityManager::Process(Window& _window)
 	{
-		for (uint32_t i = 1; i <= m_EntityCount; i++)
+		for (Entity* entity : m_Entities)
+		
 		{
-			_window.PassQuadToRenderer(m_EntityTable[i]->m_Quad);
+			_window.PassQuadToRenderer(entity->m_Quad);
 		}
 	}
 }

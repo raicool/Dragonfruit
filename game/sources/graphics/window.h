@@ -10,24 +10,28 @@ namespace DragonFruit
 	class Window
 	{
 	private:
-		inline static SDL_Window* m_Window;
-		inline static SDL_Renderer* m_Render;
-		inline static SDL_Event m_Event;
+		SDL_Window* m_Window;
+		SDL_Renderer* m_Render;
+		SDL_Event m_Event;
 
-		inline static uint32_t m_Framerate;
-		inline static uint64_t m_Framecount;
+		uint32_t m_Framerate;
+		uint64_t m_Framecount;
 
 	public:
-		static void Update();
-		static void Close();
+		static Window& Get();
 
-		static void SetClearColor(uint8_t, uint8_t, uint8_t);
-		static void SetFramerate(uint32_t);
+		void Update(bool&);
+		void Close();
 
-		static void PassQuadToRenderer(Quad&);
+		void SetClearColor(uint8_t, uint8_t, uint8_t);
+		void SetFramerate(uint32_t);
 
-		static uint64_t& GetFramecount() { return m_Framecount; }
-		static SDL_Renderer* GetRenderer() { return m_Render; }
+		void PassQuadToRenderer(Quad&);
+
+		uint64_t& GetFramecount() { return m_Framecount; }
+		SDL_Renderer* GetRenderer() { return m_Render; }
+
+		void SDLClose();
 
 		Window();
 		~Window();

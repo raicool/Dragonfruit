@@ -1,0 +1,6 @@
+[submodule "game/dependencies/SDL"]
+	path = game/dependencies/SDL
+	url = https://github.com/libsdl-org/SDL.git
+[submodule "game/dependencies/SDL_image"]
+	path = game/dependencies/SDL_image
+	url = https://github.com/libsdl-org/SDL_image.git

@@ -7,7 +7,6 @@ namespace DragonFruit
 	class Texture
 	{
 	private:
-		SDL_Surface* m_Surface;
 		SDL_Texture* m_Texture;
 
 		uint32_t m_Id;

@@ -4,21 +4,25 @@ namespace DragonFruit
 {
 	void Application::Start()
 	{
+		m_Running = true;
 		// Load Textures
-		Resources::LoadTexture("grid", "resources/texture/grid.png");
-		Resources::LoadTexture("grass", "resources/texture/grass.png");
-		Resources::LoadTexture("placeholder", "resources/texture/placehold.png");
-		Resources::LoadTexture("fireicon", "resources/texture/fire.png");
-		Resources::LoadTexture("noise", "resources/texture/noise.png");
+		auto& _ResourcesInstance = Resources::Get();
+		_ResourcesInstance.LoadTexture("grid", "resources/texture/grid.png");
+		_ResourcesInstance.LoadTexture("grass", "resources/texture/grass.png");
+		_ResourcesInstance.LoadTexture("placeholder", "resources/texture/placehold.png");
+		_ResourcesInstance.LoadTexture("fireicon", "resources/texture/fire.png");
+		_ResourcesInstance.LoadTexture("noise", "resources/texture/noise.png");
 
-		EntityManager::CreatePlayer(Resources::GetTexture("grid"), { 0, 0 });
+		m_Player = new Player(_ResourcesInstance.GetTexture("grid"), Vector2 { 0, 0 }, Vector2 { 32, 32 });
+
+		EntityManager::Get().AddEntity(m_Player);
 	}
 
 	void Application::Update()
 	{
-		EntityManager::GetEntityTable()[0]->HandleInputs();
+		m_Player->HandleInputs();
 
-		Window::Update();
+		Window::Get().Update(m_Running);
 	}
 
 	Application::Application()
