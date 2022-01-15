@@ -23,15 +23,13 @@ namespace DragonFruit
 		void Update(bool&);
 		void Close();
 
-		void SetClearColor(uint8_t, uint8_t, uint8_t);
+		void SetClearColor(Rgb&);
 		void SetFramerate(uint32_t);
 
 		void PassQuadToRenderer(Quad&);
 
 		uint64_t& GetFramecount() { return m_Framecount; }
 		SDL_Renderer* GetRenderer() { return m_Render; }
-
-		void SDLClose();
 
 		Window();
 		~Window();

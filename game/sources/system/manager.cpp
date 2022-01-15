@@ -6,8 +6,7 @@ namespace DragonFruit
 	{
 		if (m_TextureCount <= MAX_INSTANCED_TEXTURES)
 		{
-			m_Textures[_identifier] = new Texture();
-			m_Textures[_identifier]->Create(_directory, _tfilter);
+			m_Textures[_identifier].Create(_directory, _tfilter);
 			m_TextureCount++;
 		}
 		else
@@ -16,9 +15,9 @@ namespace DragonFruit
 		}
 	}
 
-	Texture* Resources::GetTexture(const char* _directory)
+	Texture& Resources::GetTexture(const char* _identifier)
 	{
-		return m_Textures[_directory];
+		return m_Textures[_identifier];
 	}
 
 	Resources& Resources::Get()

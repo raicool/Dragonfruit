@@ -4,7 +4,7 @@ namespace DragonFruit
 {
 	void Window::Update(bool& running)
 	{
-		SetClearColor(32, 64, 128);
+		this->SetClearColor(Rgb{ 32, 64, 128 });
 		SDL_RenderClear(m_Render);
 		
 		SDL_PollEvent(&m_Event);
@@ -12,7 +12,7 @@ namespace DragonFruit
 		switch (m_Event.type)
 		{
 			case SDL_QUIT: 
-				SDLClose();
+				this->Close();
 				running = false;
 				break;
 
@@ -26,9 +26,9 @@ namespace DragonFruit
 		SDL_Delay(1000 / m_Framerate);
 	}
 
-	void Window::SetClearColor(uint8_t r, uint8_t g, uint8_t b)
+	void Window::SetClearColor(Rgb& _color)
 	{
-		SDL_SetRenderDrawColor(m_Render, r, g, b, 255);
+		SDL_SetRenderDrawColor(m_Render, _color.r, _color.g, _color.b, 255);
 	}
 
 	void Window::SetFramerate(uint32_t framerate)
@@ -53,7 +53,7 @@ namespace DragonFruit
 		else { DF_LOG_INFO("SDL Window initialized."); }
 	}
 
-	void Window::SDLClose()
+	void Window::Close()
 	{
 		SDL_DestroyRenderer(m_Render);
 		SDL_DestroyWindow(m_Window);

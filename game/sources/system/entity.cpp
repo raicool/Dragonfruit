@@ -53,7 +53,7 @@ namespace DragonFruit
 	{
 		for (Entity* entity : m_Entities)
 		{
-			_window.PassQuadToRenderer(entity->m_Quad);
+			_window.PassQuadToRenderer(entity->GetQuad());
 
 			if (entity->m_Controllable) entity->HandleInputs();
 		}

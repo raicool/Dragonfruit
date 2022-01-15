@@ -7,11 +7,11 @@ namespace DragonFruit
 	private:
 		SDL_FRect m_Rect;
 		Texture* m_Texture;
-		double m_Angle;
+		double m_Angle{ 0.0f };
 
 	public:
 		void SetTexture(Texture* _texture) { m_Texture = _texture; }
-		Texture& GetTexture() { return *m_Texture; }
+		Texture GetTexture() { return *m_Texture; }
 
 		SDL_FRect& GetRect() { return m_Rect; }
 		double& GetAngle() { return m_Angle; }
