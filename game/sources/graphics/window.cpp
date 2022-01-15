@@ -2,7 +2,12 @@
 
 namespace DragonFruit
 {
-	void Window::Update()
+	Window& Window::Get() {
+		static Window instance;
+		return instance;
+	}
+
+	void Window::Update(bool& running)
 	{
 		SetClearColor(32, 64, 128);
 		SDL_RenderClear(m_Render);
@@ -13,6 +18,7 @@ namespace DragonFruit
 		{
 			case SDL_QUIT: 
 				SDLClose();
+				running = false;
 				break;
 
 			default:

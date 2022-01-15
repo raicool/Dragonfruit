@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 #define MAX_ENTITIES 1000
 
@@ -21,13 +22,12 @@ namespace DragonFruit
 		uint32_t GetID() { return m_Id; }
 
 		Entity(Vector2, Vector2);
-		~Entity();
+		virtual ~Entity();
 	};
 
 	class Player : public Entity
 	{
 	protected:
-		friend class EntityManager;
 		uint32_t m_Speed;
 		
 	public:
@@ -40,16 +40,18 @@ namespace DragonFruit
 	class EntityManager
 	{
 	private:
-		static Player* m_EntityTable[MAX_ENTITIES];
-		static uint32_t m_EntityCount;
+		std::vector<Entity*> m_Entities;
 
 	public:
-		static void CreatePlayer(Texture&, Vector2 = { 0, 0 }, Vector2 = { 32, 32 });
-		static void Kill(uint32_t _id);
+		static EntityManager& Get();
 
-		static void Process(Window&);
+		void Kill(uint32_t _id);
 
-		static Player**  GetEntityTable() { return m_EntityTable; }
-		static uint32_t& GetEntityCount() { return m_EntityCount; }
+		void Process(Window&);
+
+		void AddEntity(Entity*);
+
+		auto& GetEntityTable() { return m_Entities; }
+		auto GetEntityCount() const { return m_Entities.size(); }
 	};
 }
