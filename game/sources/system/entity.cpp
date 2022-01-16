@@ -7,7 +7,7 @@ namespace DragonFruit
 	{	
 		this->m_Quad.SetTexture(_texture);
 		this->m_Quad.GetRect() = { _pos.x, _pos.y };
-		this->m_Quad.SetSize(this->GetSizeOfTexture<float>());
+		this->m_Quad.SetSize(this->GetSizeOfTexture<float>()*4.0f);
 
 		this->m_Controllable = _controllable;
 
