@@ -12,7 +12,7 @@ namespace DragonFruit
 		m_Resources.LoadTexture("fireicon", "resources/texture/fire.png");
 		m_Resources.LoadTexture("noise", "resources/texture/noise.png");
 
-		m_Player = new Entity(&m_Resources.GetTexture("grid"), Vector2 { 0, 0 }, Vector2 { 32, 32 });
+		m_Player = new Entity(m_Resources.GetTexture("grid"), Vector2<float>{ 0, 0 }, true);
 
 		m_EntityManager.AddEntity(m_Player);
 	}

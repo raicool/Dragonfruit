@@ -3,14 +3,17 @@
 namespace DragonFruit
 {
 	// Entity
-	Entity::Entity(Texture* _texture, Vector2& _pos, Vector2& _size)
-	{
-		this->m_Quad.GetRect() = { _pos.x, _pos.y, _size.x, _size.y };
-		this->AssignTexture(_texture);
+	Entity::Entity(SDL_Texture* _texture, Vector2<float>& _pos, bool _controllable)
+	{	
+		this->m_Quad.SetTexture(_texture);
+		this->m_Quad.GetRect() = { _pos.x, _pos.y };
+		this->m_Quad.SetSize(this->GetSizeOfTexture<float>());
+
+		this->m_Controllable = _controllable;
 
 		static uint32_t counter = 0;
 		this->m_Id = counter++;
-		DF_LOG_INFO("Entity created");
+		DF_LOG_INFO("Entity created at " << this->x << ", " << this->y);
 	}
 	
 	Entity::~Entity() 
@@ -18,9 +21,19 @@ namespace DragonFruit
 		DF_LOG_INFO("Entity destroyed"); 
 	}
 
-	void Entity::AssignTexture(Texture* _texture)
+	void Entity::AssignTexture(SDL_Texture* _texture)
 	{
 		this->m_Quad.SetTexture(_texture);
+	}
+
+	template<typename T>
+    Vector2<T>& Entity::GetSizeOfTexture()
+	{
+		int32_t _checkw, _checkh;
+		SDL_QueryTexture(this->m_Quad.GetTexture(), NULL, NULL, &_checkw, &_checkh);
+		DF_LOG_DEBUG("Entities texture size " << _checkw << " " << _checkh);
+
+		return Vector2<T>{ (T)_checkw, (T)_checkh };
 	}
 
 	void Entity::HandleInputs()
@@ -29,6 +42,8 @@ namespace DragonFruit
 
 		this->x += (-_keyboard[SDL_SCANCODE_A] + _keyboard[SDL_SCANCODE_D]);
 		this->y += (-_keyboard[SDL_SCANCODE_W] + _keyboard[SDL_SCANCODE_S]);
+
+		DF_LOG_DEBUG(this->x << ", " << this->y);
 	}
 
 	// Entity Manager

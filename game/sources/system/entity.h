@@ -16,6 +16,8 @@ namespace DragonFruit
 
 	public:
 		Quad& GetQuad() { return m_Quad; }
+		template <typename T>
+		Vector2<T>& GetSizeOfTexture();
 		float& x = this->m_Quad.GetRect().x;
 		float& y = this->m_Quad.GetRect().y;
 		float& w = this->m_Quad.GetRect().w;
@@ -23,11 +25,11 @@ namespace DragonFruit
 
 		uint32_t GetID() { return m_Id; }
 
-		Entity(Texture*, Vector2&, Vector2&);
+		Entity(SDL_Texture*, Vector2<float>&, bool = false);
 		~Entity();
 
 		void HandleInputs();
-		void AssignTexture(Texture*);
+		void AssignTexture(SDL_Texture*);
 	};
 
 	class EntityManager
