@@ -6,13 +6,25 @@ namespace DragonFruit
 	{
 		if (m_TextureCount <= MAX_INSTANCED_TEXTURES)
 		{
-			m_Textures[_identifier] = Texture::Create(_directory, _tfilter);
+			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, _tfilter);
 
-			if (m_Textures[_identifier] != nullptr)
-			{
-				m_TextureCount++;
-				DF_LOG_DEBUG("Texture " << m_TextureCount << " Created");
+			SDL_Surface* _surface = IMG_Load(_directory);
+
+			if (!_surface) 
+			{ 
+				DF_LOG_ERROR("Error creating texture " << _identifier << " : " << SDL_GetError()); 
 			}
+			else
+			{
+				m_Textures[_identifier] = SDL_CreateTextureFromSurface(Window::Get().GetRenderer(), _surface);
+
+				if (m_Textures[_identifier])
+				{
+					m_TextureCount++;
+					DF_LOG_DEBUG("Texture " << _identifier << " Created at " << m_Textures[_identifier]);
+				}
+			}
+			SDL_FreeSurface(_surface);
 		}
 		else
 		{
@@ -22,6 +34,7 @@ namespace DragonFruit
 
 	SDL_Texture* Resources::GetTexture(const char* _identifier)
 	{
+		DF_LOG_DEBUG("Loc : " << m_Textures[_identifier]);
 		return m_Textures[_identifier];
 	}
 

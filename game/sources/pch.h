@@ -16,7 +16,6 @@
 // Dragonfruit
 #include "system/type.h"
 #include "system/debug.h"
-#include "graphics/texture.h"
 #include "graphics/quad.h"
 #include "graphics/window.h"
 #include "system/entity.h"

@@ -11,7 +11,7 @@ add_executable(dragonfruit
     game/sources/system/entity.cpp
     game/sources/system/manager.cpp
     game/sources/graphics/quad.cpp
-    game/sources/graphics/texture.cpp
+    
     game/sources/graphics/window.cpp
 
     game/dependencies/imgui/imgui.cpp

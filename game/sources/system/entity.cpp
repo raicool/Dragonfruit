@@ -31,7 +31,7 @@ namespace DragonFruit
 	{
 		int32_t _checkw, _checkh;
 		SDL_QueryTexture(this->m_Quad.GetTexture(), NULL, NULL, &_checkw, &_checkh);
-		DF_LOG_DEBUG("Entities texture size " << _checkw << " " << _checkh);
+		DF_LOG_DEBUG("Texture dimensions: " << _checkw << " " << _checkh);
 
 		return Vector2<T>{ (T)_checkw, (T)_checkh };
 	}
@@ -42,8 +42,6 @@ namespace DragonFruit
 
 		this->x += (-_keyboard[SDL_SCANCODE_A] + _keyboard[SDL_SCANCODE_D]);
 		this->y += (-_keyboard[SDL_SCANCODE_W] + _keyboard[SDL_SCANCODE_S]);
-
-		DF_LOG_DEBUG(this->x << ", " << this->y);
 	}
 
 	// Entity Manager
