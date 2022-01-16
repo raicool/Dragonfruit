@@ -4,7 +4,7 @@
 
 namespace DragonFruit
 {
-	using TextureMap = std::unordered_map<const char*, SDL_Texture*>;
+	using TextureMap = std::unordered_map<std::string, SDL_Texture*>;
 
 	class Resources
 	{
@@ -14,7 +14,7 @@ namespace DragonFruit
 
 	public:
 		void LoadTexture(const char*, const char*, const char* = "0");
-		SDL_Texture* GetTexture(const char*);
+		SDL_Texture* GetTexture(std::string);
 
 		static Resources& Get();
 	};

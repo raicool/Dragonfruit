@@ -32,7 +32,7 @@ namespace DragonFruit
 		}
 	}
 
-	SDL_Texture* Resources::GetTexture(const char* _identifier)
+	SDL_Texture* Resources::GetTexture(std::string _identifier)
 	{
 		DF_LOG_DEBUG("Loc : " << m_Textures[_identifier]);
 		return m_Textures[_identifier];
