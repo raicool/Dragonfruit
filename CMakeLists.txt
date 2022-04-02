@@ -22,7 +22,7 @@ add_executable(dragonfruit
     "game/dependencies/imgui/backends/imgui_impl_sdlrenderer.cpp"
     "game/dependencies/imgui/backends/imgui_impl_opengl3.cpp"
     "game/dependencies/imgui/backends/imgui_impl_sdl.cpp"
- "game/sources/system/debug.cpp")
+ "game/sources/system/debug.cpp" "game/sources/system/gui/hierarchy.cpp" "game/sources/system/layers.h" )
 
 target_precompile_headers(dragonfruit PRIVATE 
     "game/sources/pch.h"

@@ -10,3 +10,9 @@
 [submodule "game/dependencies/spdlog"]
 	path = game/dependencies/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "game/dependencies/glm"]
+	path = game/dependencies/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "game/dependencies/entt"]
+	path = game/dependencies/entt
+	url = https://github.com/skypjack/entt.git
