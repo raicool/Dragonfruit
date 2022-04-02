@@ -4,3 +4,9 @@
 [submodule "game/dependencies/SDL_image"]
 	path = game/dependencies/SDL_image
 	url = https://github.com/libsdl-org/SDL_image.git
+[submodule "game/dependencies/imgui"]
+	path = game/dependencies/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "game/dependencies/spdlog"]
+	path = game/dependencies/spdlog
+	url = https://github.com/gabime/spdlog.git
