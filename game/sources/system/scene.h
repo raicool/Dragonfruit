@@ -2,6 +2,8 @@
 
 #include "type.h"
 
+#include "debug.h"
+
 namespace Dragonfruit
 {
 	class Entity;
@@ -15,6 +17,9 @@ namespace Dragonfruit
 		uint32_t GetEntityCount() { return m_entitycount; }
 
 		void ProcessEntities();
+
+		Scene() { DF_LOG_INFO("Scene created"); }
+		~Scene() { DF_LOG_INFO("Scene destroyed"); }
 
 	private:
 		friend class Entity;

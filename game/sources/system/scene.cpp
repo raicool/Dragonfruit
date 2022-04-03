@@ -24,6 +24,7 @@ namespace Dragonfruit
 
 		entity->GetComponent<MeshComponent>().Mesh.SetTexture(_texture);
 		entity->GetComponent<TransformComponent>().Position = { (_pos, 0.0f) };
+		entity->GetComponent<NameComponent>().Name = "New Entity";
 		entity->m_controllable = _control;
 
 		m_entitycount++;

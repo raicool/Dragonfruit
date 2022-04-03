@@ -27,6 +27,6 @@ namespace Dragonfruit
 	{
 		auto& name = entity->GetComponent<NameComponent>();
 
-		ImGui::TextColored(ImVec4{ 1.0, 0.75, 0.5, 1.0 }, name.Name);
+		ImGui::TreeNode(entity, name.Name.c_str());
 	}
 }

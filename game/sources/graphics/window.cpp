@@ -30,7 +30,7 @@ namespace Dragonfruit
 
 				ImGui::ShowDemoWindow((bool*)true);
 				
-				//Application::Get()->m_hierarchy.OnImGuiRender();
+				Application::Get()->m_hierarchy.OnImGuiRender();
 
 				ImGui::Render();
 				ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());

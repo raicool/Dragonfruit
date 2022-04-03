@@ -26,6 +26,6 @@ namespace Dragonfruit
 
 	struct NameComponent
 	{
-		const char* Name;
+		std::string Name;
 	};
 }
