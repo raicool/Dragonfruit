@@ -5,7 +5,11 @@
 #include <vector>
 #include <array>
 #include <fstream>
-#include <chrono>
+#include <memory>
+
+// Windows
+#include <dsound.h>
+#include <xaudio2.h>
 
 // SDL/OpenGL/GLM
 #define SDL_MAIN_HANDLED

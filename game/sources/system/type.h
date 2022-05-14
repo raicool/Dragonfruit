@@ -8,12 +8,12 @@ namespace Dragonfruit
 	struct Vector2  
 	{
 		T x, y; 
-		Vector2 operator* (float _other)
+		Vector2 operator* (float _fval)
 		{
 			return Vector2
 			{
-				this->x *= _other,
-				this->y *= _other
+				this->x *= _fval,
+				this->y *= _fval
 			};
 		}
 	};
@@ -22,13 +22,13 @@ namespace Dragonfruit
 	struct Vector3  
 	{ 
 		T x, y, z; 
-		Vector3 operator* (float _other)
+		Vector3 operator* (float _fval)
 		{
 			return Vector3
 			{
-				this->x *= _other,
-				this->y *= _other,
-				this->z *= _other
+				this->x *= _fval,
+				this->y *= _fval,
+				this->z *= _fval
 			};
 		}
 	};
@@ -37,14 +37,14 @@ namespace Dragonfruit
 	struct Vector4  
 	{ 
 		T x, y, z, w; 
-		Vector4 operator* (float _other)
+		Vector4 operator* (float _fval)
 		{
 			return Vector4
 			{
-				this->x *= _other,
-				this->y *= _other,
-				this->z *= _other,
-				this->w *= _other
+				this->x *= _fval,
+				this->y *= _fval,
+				this->z *= _fval,
+				this->w *= _fval
 			};
 		}
 	};

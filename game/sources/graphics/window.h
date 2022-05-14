@@ -7,34 +7,30 @@
 
 namespace Dragonfruit
 {
-	struct WindowSpecification
-	{
-		const char* Title = "SDL";
-		int32_t WinWidth  = 1326;
-		int32_t WinHeight = 720;
-		bool Vsync        = true;
-	};
+	constexpr const char* Title = "SDL";
+	constexpr int32_t WinWidth = 1326;
+	constexpr int32_t WinHeight = 720;
+	constexpr bool VSync = true;
 
 	class Window
 	{
-	private:
-		SDL_Window* m_window;
-		SDL_Renderer* m_renderer;
-		SDL_Event m_event;
-
-		WindowSpecification m_windowspecs;
-
 	public:
-		void Update(bool&);
 		void Close();
-
-		void SetClearColor(Rgb&);
-
-		void PassQuadToRenderer(Quad&);
+		void SetClearColor(Rgb);
+		void PassQuadToRenderer(QuadComponent&);
 
 		SDL_Renderer* GetRenderer() { return m_renderer; }
 
+		operator SDL_Window* const () { return m_window; }
+
 		Window();
 		~Window();
+
+	private:
+		friend class Application;
+
+		SDL_Window* m_window;
+		SDL_Renderer* m_renderer;
+		SDL_Event m_event;
 	};
 }

@@ -1,12 +1,11 @@
 #pragma once
 
-#define MAX_INSTANCED_TEXTURES 256
-
 namespace Dragonfruit
 {
-	class Resource
+	namespace Resource
 	{
-	public:
+		using TextureMap = std::unordered_map<std::string_view, SDL_Texture*>;
+
 		/* 
 		* @brief Load a specified texture into the texture map
 		* @param identifier: map key
@@ -14,19 +13,13 @@ namespace Dragonfruit
 		* @param filter: filter mode  
 		*	0 = nearest
 		*	1 = linear
-		*	2 = best / anisotropic (D3D Only)
+		*	2 = best / anisotropic (Direct3D only)
 		*/
 		void LoadTexture(const char* identifier, const char* directory, const char* filter = "0");
 		SDL_Texture* GetTexture(std::string_view);
-		
-		static Resource& Get();
-
-	private:
-		using TextureMap = std::unordered_map<std::string_view, SDL_Texture*>;
 
 		// Unordered map of all loaded textures (key being identifier)
-		TextureMap m_textures;
-
-		uint32_t m_texturecount;
+		inline TextureMap Textures;
+		inline uint32_t TextureCount;
 	};
 }

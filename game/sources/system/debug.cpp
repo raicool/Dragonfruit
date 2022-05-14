@@ -14,10 +14,10 @@ namespace Dragonfruit
 		spdlog::sink_ptr consolesink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
 		spdlog::sink_ptr filesink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("dragonfruit.log");
 
-		consolesink->set_pattern("[%T] : %v");
+		consolesink->set_pattern("%^[%T] : %v%$");
 		filesink->set_pattern("[%T] : %v");
 
-		DebugLogger = std::make_shared<spdlog::logger>("DRAGON", spdlog::sinks_init_list{ consolesink, filesink });
+		DebugLogger = std::make_shared<spdlog::logger>("Dragon", spdlog::sinks_init_list{ consolesink, filesink });
 		spdlog::register_logger(DebugLogger);
 		spdlog::set_level(spdlog::level::trace);
 		spdlog::flush_on(spdlog::level::trace);

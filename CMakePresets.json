@@ -1,76 +1,105 @@
 ﻿{
   "version": 2,
   "configurePresets": [
+
+    // Debug ////////////////////////////////
+    // x64 //////////////////////////////////
     {
       "name": "x64-debug",
       "displayName": "Windows x64 Debug",
       "description": "Target Windows with the Visual Studio development environment.",
+
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/out/build/${presetName}",
+
+      "binaryDir": "${sourceDir}/build/${presetName}",
+
       "architecture": {
         "value": "x64",
         "strategy": "external"
       },
+
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/cache/${presetName}"
       },
+
       "vendor": { "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "Windows" ] } }
     },
+    // x86 //////////////////////////////////
     {
       "name": "x86-debug",
       "displayName": "Windows x86 Debug",
       "description": "Target Windows with the Visual Studio development environment.",
+
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/out/build/${presetName}",
+
+      "binaryDir": "${sourceDir}/build/${presetName}",
+
       "architecture": {
         "value": "x86",
         "strategy": "external"
       },
+
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}"
       },
+
       "vendor": { "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "Windows" ] } }
     },
+
+    // Release //////////////////////////////
+    // x64 //////////////////////////////////
     {
       "name": "x64-release",
       "displayName": "Windows x64 Release",
       "description": "Target Windows with the Visual Studio development environment.",
+
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/out/build/${presetName}",
+
+      "binaryDir": "${sourceDir}/build/${presetName}",
+
       "architecture": {
         "value": "x64",
         "strategy": "external"
       },
+
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}"
       },
+
       "vendor": { "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "Windows" ] } }
     },
+    // x86 //////////////////////////////////
     {
       "name": "x86-release",
       "displayName": "Windows x86 Release",
       "description": "Target Windows with the Visual Studio development environment.",
+
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/out/build/${presetName}",
+
+      "binaryDir": "${sourceDir}/build/${presetName}",
+
       "architecture": {
         "value": "x86",
         "strategy": "external"
       },
+
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}"
       },
+
       "vendor": { "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "Windows" ] } }
     }
-  ],
+  ]
+  
   "buildPresets": [
     {
-      "name": "default",
-      "configurePreset": "x64-release",
-      "cleanFirst": true
+      "name": "clean",
+      "configurePreset": "x64-debug",
+      "cleanFirst": false
     }
   ]
 }

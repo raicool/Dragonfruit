@@ -8,22 +8,6 @@
 
 namespace Dragonfruit
 {
-	struct MeshComponent
-	{
-		Quad Mesh;
-
-		operator Quad& () { return Mesh; }
-
-//		MeshComponent(MeshComponent&) = default;
-	};
-
-	struct TransformComponent
-	{
-		Vector3<float> Position { 0.0f };
-		Vector3<float> Rotation { 0.0f };
-		Vector3<float> Scale { 1.0f };
-	};
-
 	struct NameComponent
 	{
 		std::string Name;

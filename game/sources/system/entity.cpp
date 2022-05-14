@@ -17,30 +17,37 @@ namespace Dragonfruit
 		m_scene = scene;
 		m_id = scene->GetEntityCount();
 
-		AddComponent<MeshComponent>();
-		AddComponent<TransformComponent>();
-		AddComponent<NameComponent>();
+		AddComponent<QuadComponent>().SetTexture("grid");
+		AddComponent<NameComponent>().Name = "Entity";
 
-		MeshComponent& meshcomp = GetComponent<MeshComponent>();
-		meshcomp.Mesh.SetTexture("grid");
+		QuadComponent& quadcomp = GetComponent<QuadComponent>();
+		Vector2<float> texsize = Utils::GetSizeOfTexture<float>("grid")*4.0f;
+		quadcomp.GetRect().w = texsize.x;
+		quadcomp.GetRect().h = texsize.y;
+		DF_LOG_TRACE("Entity created at {}, {}", quadcomp.GetRect().x, quadcomp.GetRect().y);
+	}
 
-		TransformComponent& transcomp = GetComponent<TransformComponent>();
-		transcomp.Scale = { (Utils::GetSizeOfTexture<float>("grid") * 4.0f, 0.0f) };
+	Entity::Entity(Entity& entity, entt::entity identifier, Scene* scene)
+	{
+		m_entityhandler = identifier;
+		m_scene = scene;
+		m_id = scene->GetEntityCount();
 
-		NameComponent& namecomp = GetComponent<NameComponent>();
-		namecomp.Name = "Entity";
+		AddComponent<QuadComponent>() = entity.GetComponent<QuadComponent>();
+		AddComponent<NameComponent>() = entity.GetComponent<NameComponent>();
 
-		DF_LOG_TRACE("Entity created at {}, {}", meshcomp.Mesh.GetRect().x, meshcomp.Mesh.GetRect().y);
+		DF_LOG_TRACE("Entity {} copied", m_id);
 	}
 
 	template<typename T>
-	void Entity::AddComponent()
+	T& Entity::AddComponent()
 	{
 		m_scene->m_registry.emplace<T>(m_entityhandler);
+		return m_scene->m_registry.get<T>(m_entityhandler);
 	}
 
 	template<typename T>
-	T Entity::GetComponent()
+	T& Entity::GetComponent()
 	{
 		return m_scene->m_registry.get<T>(m_entityhandler);
 	}
@@ -48,10 +55,10 @@ namespace Dragonfruit
 	void Entity::HandleInputs()
 	{
 		const uint8_t* _keyboard = SDL_GetKeyboardState(NULL);
-		MeshComponent& meshcomp = GetComponent<MeshComponent>();
+		QuadComponent& quadcomp = GetComponent<QuadComponent>();
 
-		meshcomp.Mesh.GetRect().x += (-_keyboard[SDL_SCANCODE_A] + _keyboard[SDL_SCANCODE_D]) * 5;
-		meshcomp.Mesh.GetRect().y += (-_keyboard[SDL_SCANCODE_W] + _keyboard[SDL_SCANCODE_S]) * 5;
+		quadcomp.GetRect().x += (-_keyboard[SDL_SCANCODE_A] + _keyboard[SDL_SCANCODE_D]) * 5;
+		quadcomp.GetRect().y += (-_keyboard[SDL_SCANCODE_W] + _keyboard[SDL_SCANCODE_S]) * 5;
 	}
 
 	Entity::~Entity()

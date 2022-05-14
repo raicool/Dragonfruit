@@ -2,8 +2,6 @@
 
 #include "scene.h"
 
-#define MAX_ENTITIES 1000
-
 namespace Dragonfruit
 {
 	class Entity
@@ -14,13 +12,16 @@ namespace Dragonfruit
 		void HandleInputs();
 
 		template<typename T>
-		void AddComponent();
+		T& AddComponent();
 
 		template<typename T>
-		T GetComponent();
+		T& GetComponent();
 
 		Entity(entt::entity identifier, Scene* scene);
-		Entity();
+		
+		// Copy
+		Entity(Entity&, entt::entity identifier, Scene* scene);
+
 		~Entity();
 
 	protected:
@@ -28,7 +29,7 @@ namespace Dragonfruit
 		bool m_controllable = false;
 
 		// Given at creation
-		uint32_t m_id;
+		uint32_t m_id = 0;
 
 		//
 		entt::entity m_entityhandler;

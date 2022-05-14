@@ -7,7 +7,7 @@
 
 namespace Dragonfruit
 {
-	class Quad
+	class QuadComponent
 	{
 	private:
 		SDL_FRect m_rect;
@@ -21,31 +21,9 @@ namespace Dragonfruit
 		SDL_FRect& GetRect() { return m_rect; }
 		double& GetAngle() { return m_angle; }
 
-		void SetSize(Vector2<float> newsize) 
-		{ 
-			m_rect.w = newsize.x; 
-			m_rect.h = newsize.y;
-		}
-
-		void SetPosition(Vector2<float> newpos)
-		{
-			m_rect.x = newpos.x;
-			m_rect.y = newpos.y;
-		}
-		
-		void SetTexture(const char* texture)
-		{
-			m_texture = Resource::Get().GetTexture(texture);
-
-			if (texture == nullptr)
-			{
-				DF_LOG_ERROR("Texture could not be found!");
-			}
-			else
-			{
-				m_texturename = const_cast<char*>(texture);
-			}
-		}
+		void SetSize(Vector2<float> newsize);
+		void SetPosition(Vector2<float> newpos);
+		void SetTexture(const char* texture);
 
 		operator SDL_FRect* const () { return &m_rect; }
 	};
