@@ -9,7 +9,7 @@ namespace Dragonfruit
 {
 	void Resource::LoadTexture(const char* identifier, const char* directory, const char* tfilter)
 	{
-		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+		SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, tfilter);
 
 		SDL_Surface* surface = IMG_Load(directory);
 
